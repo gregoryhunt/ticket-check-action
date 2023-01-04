@@ -1,4 +1,4 @@
-name: 'Pull Request Ticket Check Action'
+name: 'Pull Request Ticket Link Check Action'
 description: 'Verify that pull requests are linked to ticketing system with a ticket ID'
 author: 'Gregory Hunt'
 
