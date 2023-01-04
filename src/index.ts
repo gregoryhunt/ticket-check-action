@@ -32,6 +32,7 @@ async function run(): Promise<void> {
     const titleRegexFlags = getInput('titleRegexFlags', {
       required: true
     });
+    const titleLinksTicket = getInput('titleLinksTicket', { required: false }) === 'true';
     const ticketLink = getInput('ticketLink', { required: false });
     const titleRegex = new RegExp(titleRegexBase, titleRegexFlags);
     const titleCheck = titleRegex.exec(title);
@@ -68,7 +69,7 @@ async function run(): Promise<void> {
 
       const linkToTicket = ticketLink.replace('%ticketNumber%', ticketNumber);
 
-      const currentReviews = await client.pulls.listReviews({
+      const currentReviews = await client.rest.pulls.listReviews({
         owner,
         repo,
         pull_number: number
@@ -85,7 +86,7 @@ async function run(): Promise<void> {
         return;
       }
 
-      client.pulls.createReview({
+      client.rest.pulls.createReview({
         owner,
         repo,
         pull_number: number,
@@ -97,7 +98,7 @@ async function run(): Promise<void> {
     debug('title', title);
 
     // Return and approve if the title includes a Ticket ID
-    if (titleCheck !== null) {
+    if (titleCheck !== null && titleLinksTicket) {
       debug('success', 'Title includes a ticket ID');
       await linkTicket(titleCheck);
 
@@ -203,7 +204,7 @@ async function run(): Promise<void> {
         return;
       }
 
-      client.pulls.update({
+      client.rest.pulls.update({
         owner,
         repo,
         pull_number: number,
@@ -214,7 +215,7 @@ async function run(): Promise<void> {
       });
 
       if (!quiet) {
-        client.pulls.createReview({
+        client.rest.pulls.createReview({
           owner,
           repo,
           pull_number: number,
@@ -285,7 +286,7 @@ async function run(): Promise<void> {
       return;
     }
   } catch (error) {
-    setFailed(error.message);
+    setFailed((error as Error).message);
   }
 }
 
