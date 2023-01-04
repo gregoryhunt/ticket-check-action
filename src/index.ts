@@ -148,17 +148,17 @@ async function run(): Promise<void> {
 
         return;
       }
-
-      client.pulls.update({
-        owner,
-        repo,
-        pull_number: number,
-        title: titleFormat
-          .replace('%prefix%', ticketPrefix)
-          .replace('%id%', id)
-          .replace('%title%', title)
-      });
-
+      if(titleCheck !== null) {
+        client.pulls.update({
+          owner,
+          repo,
+          pull_number: number,
+          title: titleFormat
+            .replace('%prefix%', ticketPrefix)
+            .replace('%id%', id)
+            .replace('%title%', title)
+        });
+      }
       if (!quiet) {
         client.pulls.createReview({
           owner,
@@ -203,16 +203,17 @@ async function run(): Promise<void> {
 
         return;
       }
-
-      client.rest.pulls.update({
-        owner,
-        repo,
-        pull_number: number,
-        title: titleFormat
-          .replace('%prefix%', ticketPrefix)
-          .replace('%id%', id)
-          .replace('%title%', title)
-      });
+      if (titleCheck !== null) {
+        client.rest.pulls.update({
+          owner,
+          repo,
+          pull_number: number,
+          title: titleFormat
+            .replace('%prefix%', ticketPrefix)
+            .replace('%id%', id)
+            .replace('%title%', title)
+        });
+      }
 
       if (!quiet) {
         client.rest.pulls.createReview({
@@ -257,16 +258,17 @@ async function run(): Promise<void> {
         return;
       }
 
-      client.pulls.update({
-        owner,
-        repo,
-        pull_number: number,
-        title: titleFormat
-          .replace('%prefix%', ticketPrefix)
-          .replace('%id%', id)
-          .replace('%title%', title)
-      });
-
+      if(titleCheck !== null) {
+        client.pulls.update({
+          owner,
+          repo,
+          pull_number: number,
+          title: titleFormat
+            .replace('%prefix%', ticketPrefix)
+            .replace('%id%', id)
+            .replace('%title%', title)
+        });
+      }
       if (!quiet) {
         client.pulls.createReview({
           owner,
