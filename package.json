@@ -1,7 +1,7 @@
 {
   "name": "ticket-check-action",
   "description": "Verify that your pull request is linked to a ticketing system",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "author": "Gregory Hunt <huntg1@gmail.com>, Neo Financial Engineering <engineering@neofinancial.com>",
   "license": "MIT",
   "repository": {

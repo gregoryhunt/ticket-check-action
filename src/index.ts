@@ -148,7 +148,7 @@ async function run(): Promise<void> {
 
         return;
       }
-      if (titleCheck !== null) {
+      if (titleCheck === null) {
         client.pulls.update({
           owner,
           repo,
@@ -203,7 +203,7 @@ async function run(): Promise<void> {
 
         return;
       }
-      if (titleCheck !== null) {
+      if (titleCheck === null) {
         client.rest.pulls.update({
           owner,
           repo,
@@ -258,7 +258,7 @@ async function run(): Promise<void> {
         return;
       }
 
-      if (titleCheck !== null) {
+      if (titleCheck === null) {
         client.pulls.update({
           owner,
           repo,
