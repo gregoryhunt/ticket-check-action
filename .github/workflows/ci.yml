@@ -23,7 +23,7 @@ jobs:
       - name: Test
         run: npm test --coverage
       - name: Commit build
-        if: github.ref == 'refs/heads/master'
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: endbug/add-and-commit@v4
         with:
           add: build
