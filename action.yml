@@ -1,6 +1,6 @@
 name: 'Pull Request Ticket Check Action'
-description: 'Verify that pull request titles start with a ticket ID'
-author: 'Neo Financial Engineering'
+description: 'Verify that pull requests are linked to ticketing system with a ticket ID'
+author: 'Gregory Hunt'
 
 inputs:
   ticketPrefix:
@@ -21,6 +21,11 @@ inputs:
   titleRegexFlags:
     description: 'The regular expression flags applied to the title regular expression'
     default: 'gi'
+    required: true
+
+  titleLinksTicket:
+    description: 'Flag for specifying in ticket number in the title will autolink to ticketing system'
+    default: 'true'
     required: true
 
   branchRegex:

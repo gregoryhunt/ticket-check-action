@@ -1,12 +1,12 @@
 # Pull Request Ticket Check Action
 
-[![Build status](https://github.com/neofinancial/ticket-check-action/workflows/CI/badge.svg)](https://github.com/neofinancial/ticket-check-action/actions)
+[![Build status](https://github.com/gregoryhunt/ticket-check-action/workflows/CI/badge.svg)](https://github.com/gregoryhunt/ticket-check-action/actions)
 
-Verify that pull request titles start with a ticket ID
+Verify that pull request is linked to a ticketing system with a ticket ID
 
 ## Overview
 
-This Github Action helps ensure that all pull requests have an associated ticket ID in their title.
+This Github Action helps ensure that all pull requests are linked to a ticketing system with an associated ticket ID.
 
 It can detect the ID in the title of the pull request, in the branch name, whether a reference ID (`#123`) is in the body, or even if a full URL is in the body.
 
@@ -103,6 +103,7 @@ jobs:
           ticketLink: 'https://app.shortcut.com/:org/story/%ticketNumber%'
           ticketPrefix: 'SC-'
           titleRegex: '^(CH|sc)(-?)(?<ticketNumber>\d+)'
+          titleLinksTicket: false
           branchRegex: '^(CH|sc)(-?)(?<ticketNumber>\d+)'
           bodyRegex: '(CH|sc)(-?)(?<ticketNumber>\d+)'
           bodyURLRegex: 'https?:\/\/app\.(clubhouse.io|shortcut.com)(\/:org)\/story\/(?<ticketNumber>\d+)'
@@ -113,13 +114,14 @@ jobs:
 ## Inputs
 
 | Name              | Required | Description                                                                                                                                          | default                          |
-| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| token             | ✅       | The GitHub access token                                                                                                                              |                                  |
+|-------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
+| token             | ✅        | The GitHub access token                                                                                                                              |                                  |
 | ticketLink        |          | The URL format for a link to a ticket with a `%ticketNumber%` placeholder                                                                            |                                  |
 | ticketPrefix      |          | The unique identifier for the ticket/issue                                                                                                           |                                  |
 | titleFormat       |          | The intended format the title should be set to if it doesn't match the regular expression. Available variables are `%prefix%`, `%id%`, and `%title%` | %prefix%%id%: %title%            |
 | titleRegex        |          | The regular expression used to search the title for the intended format                                                                              | ^(CH)(-?)(?<ticketNumber>\d{3,}) |
 | titleRegexFlags   |          | The regular expression flags applied to the title regular expression                                                                                 | gi                               |
+ | titleLinksTicket  |          | If `false`, don't pass just on ticket id in PR the title                                                                                             | true                             |
 | branchRegex       |          | The regular expression used to search the branch for the intended format                                                                             | ^(CH)(-?)(?<ticketNumber>\d{3,}) |
 | branchRegexFlags  |          | The regular expression flags applied to the branch regular expression                                                                                | gi                               |
 | bodyRegex         |          | The regular expression used to search the body for a shorthand reference (example `#123`)                                                            | (CH)(-?)(?<ticketNumber>\d{3,})  |

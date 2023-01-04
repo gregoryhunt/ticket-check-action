@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 (Jan 04, 2023)
+Update npm packages with security vulnerabilities
+Add `titleLinksTicket` input for not passing check when ticketing system doesn't auto link on PR title (Shortcut) 
+
 ## 1.4.1 (Oct 16, 2021)
 
 Switch to npm
