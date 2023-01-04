@@ -37,13 +37,13 @@
     ]
   },
   "devDependencies": {
-    "@actions/core": "1.2.6",
+    "@actions/core": "^1.10.0",
     "@actions/github": "4.0.0",
     "@types/node": "13.11.0",
     "@vercel/ncc": "0.25.1",
     "eslint": "^7.32.0",
     "eslint-config-neo": "0.5.2",
-    "husky": "^4.2.3",
+    "husky": "^8.0.3",
     "is-plain-object": "^5.0.0",
     "lint-staged": "^10.1.1",
     "prettier": "1.19.1",
